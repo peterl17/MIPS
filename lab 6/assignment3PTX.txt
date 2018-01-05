@@ -1,0 +1,17 @@
+//Assignment 3 PTX Peter Luo
+start:
+.global.f32 value =0;
+.global.f32 sums = 0;
+.global.s32 k=0;
+ld.local.s32 r2,r1; // load register for value n into r2 from address in r1
+//r2 =n
+loop:
+setp.lt.s32 p,k,r2; //p = (k<n)
+@p 
+ex2.f32 value,k; // 2^k
+div.f32 value,1,value; // value = 1/2^k
+add.f32 sums, sums, value; //sums = sums +value
+add.s32 k,k,1; //increment k
+bra loop; // go to next in series
+@!p
+exit;

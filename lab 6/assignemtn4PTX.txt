@@ -1,0 +1,22 @@
+// Peter Luo PTX Assignment 4
+
+.global.s32 counter1 =0;
+.global.s32 counter2 = 0;
+.global.s32 i = 0;
+.global.s32 temp =0;
+ld.local.s32 array1[5] = {2,-4,4,7,11,8};
+loop:
+setp.lt.s32 b,i,21; // p =1 when i less than 6 units. 
+@b //Bubble sort loop
+setp.gt.s32 p,array1[i],array[i+4]; // when prev is less than next
+@p // p = 1 when switch needs to happen
+//switch
+mov.s32 array1[i],temp; 
+mov.s32 array1[i],array[i+4];
+mov.s32 array1[arrayi+4],temp;
+
+add.s32 i,4; // add 4 byte to array1 offset
+bra loop; // go back to loop
+
+@!b // when finished loops, exit
+exit;
